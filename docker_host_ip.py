@@ -11,7 +11,7 @@ def get_ip_within_host():
 
 def _get_ifconfig():
     cmd = os.popen("ifconfig docker0")
-    return cmd.readall()
+    return cmd.read()
 
 
 def get_docker_host_ip():
