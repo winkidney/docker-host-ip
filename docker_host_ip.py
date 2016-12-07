@@ -1,3 +1,4 @@
+import logging
 import os
 import re
 
@@ -22,4 +23,8 @@ def get_docker_host_ip():
     returns = _get_ifconfig()
     regex = r"inet\ addr:((\d{1,3}\.){1,3}\d{1,3})"
     matched = re.findall(regex, returns)
-    return matched[0][0]
+    try:
+        return matched[0][0]
+    except IndexError:
+        logging.exception("Failed to get docker0's ip address, check if it exists.")
+        return None

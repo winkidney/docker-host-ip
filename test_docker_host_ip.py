@@ -26,3 +26,13 @@ def test_get_docker_host_ip():
         assert out == "172.17.0.1"
 
 
+def test_should_docker_host_ip_return_none():
+    with mock.patch.object(
+        dhi,
+        "_get_ifconfig",
+    ) as mocked_ifconfig:
+        mocked_ifconfig.return_value = ""
+        out = dhi.get_docker_host_ip()
+        assert out is None
+
+
