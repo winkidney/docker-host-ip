@@ -10,17 +10,17 @@ def get_ip_within_host():
     return re.findall(regex, returns)
 
 
-def _get_ifconfig():
-    cmd = os.popen("ifconfig docker0")
+def _get_ifconfig(interface_name):
+    cmd = os.popen("ifconfig %s" % interface_name)
     return cmd.read()
 
 
-def get_docker_host_ip():
+def get_docker_host_ip(iface_name="docker0"):
     """
     Only work while docker0 exists
     :return:
     """
-    returns = _get_ifconfig()
+    returns = _get_ifconfig(iface_name)
     regex = r"inet\ addr:((\d{1,3}\.){1,3}\d{1,3})"
     matched = re.findall(regex, returns)
     try:
