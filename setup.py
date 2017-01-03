@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='docker-host-ip',
-    version='0.0.2',
+    version='0.0.3',
     py_modules=['docker_host_ip'],
     url='https://github.com/winkidney/docker-host-ip',
     license='MIT',
